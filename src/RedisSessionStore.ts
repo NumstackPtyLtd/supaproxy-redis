@@ -29,4 +29,18 @@ export class RedisSessionStore implements SessionStore {
   async delete(key: string): Promise<void> {
     await this.client.del(key)
   }
+
+  async getRecentQueryCount(scope: string, windowSeconds: number): Promise<number> {
+    const key = `ratelimit:${scope}`
+    try {
+      const count = await this.client.incr(key)
+      if (count === 1) {
+        await this.client.expire(key, windowSeconds)
+      }
+      return count - 1
+    } catch (err) {
+      log.warn({ err }, 'Redis query count failed, defaulting to 0')
+      return 0
+    }
+  }
 }
