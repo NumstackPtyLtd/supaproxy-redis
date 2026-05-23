@@ -1,6 +1,6 @@
 {
   "name": "@supaproxy/redis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redis session store adapter for SupaProxy",
   "type": "module",
   "main": "dist/index.js",
@@ -11,7 +11,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -37,6 +39,8 @@
     "type": "git",
     "url": "https://github.com/NumstackPtyLtd/supaproxy-redis.git"
   },
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "packageManager": "pnpm@9.15.0"
 }
